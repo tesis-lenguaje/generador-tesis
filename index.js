@@ -89,14 +89,6 @@ const { document } = window.window
 //     tag.innerText = "\n" + content + "\n"
 // }
 
-let headers = document.querySelectorAll("h1, h2, h3, h4")
-for (let el of headers) {
-    let new_el = el.cloneNode(true)
-    let parent = document.createElement('li')
-    parent.appendChild(new_el)
-    el.replaceWith(parent)
-}
-
 let actualHTML = document.documentElement.innerHTML
 let HTMLOutput = path.basename(output, ".pdf") + ".html"
 fs.writeFileSync(HTMLOutput, actualHTML)
