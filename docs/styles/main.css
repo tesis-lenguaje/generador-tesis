@@ -1,0 +1,61 @@
+@media print
+{
+    * {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12pt;
+    }
+}
+
+@media screen {
+    * {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        margin-top: 40pt;
+    }
+}
+
+li:not(:first-child)>h1 {
+    page-break-before: always;
+}
+
+h1:not(:first-child) {
+    page-break-before: always;
+}
+
+a {
+    color: black;
+}
+
+.table-of-contents>ol {
+    counter-reset: item;
+}
+
+h2>a, h1>a {
+    text-decoration: none;
+}
+
+/* https://stackoverflow.com/a/30326819 */
+ol {
+    counter-reset: item;
+}
+
+ol > li {
+    counter-increment: item;
+}
+
+ol ol > li {
+    display: block;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -20px;
+}
+/* ------------------------------------ */

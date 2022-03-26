@@ -1,0 +1,21 @@
+{
+  "name": "tesis-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "louis1001",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^9.1.0",
+    "html-pdf-node": "^1.0.8",
+    "jsdom": "^19.0.0",
+    "markdown-it": "^12.3.2",
+    "markdown-it-anchor": "^8.4.1",
+    "markdown-it-table-of-contents": "^0.6.0",
+    "pdf-creator-node": "^2.3.4"
+  }
+}
