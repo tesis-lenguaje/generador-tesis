@@ -1,13 +1,13 @@
 @media print
 {
-    * {
+    html, body {
         font-family: 'Times New Roman', Times, serif;
         font-size: 12pt;
     }
 }
 
 @media screen {
-    * {
+    html, body {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
@@ -63,3 +63,11 @@ ol ol > li:before {
     margin-left: -20px;
 }
 /* ------------------------------------ */
+
+pre {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10pt;
+    margin: 0 40pt;
+    background-color: rgb(238, 238, 238);
+    white-space: pre-line;
+}

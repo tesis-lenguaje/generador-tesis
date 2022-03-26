@@ -6,6 +6,26 @@ import { parentDir } from './utils.js'
 const maxImportStack = 30
 
 const importPrefix = "@import "
+const evalBegin = "@>"
+const evalEnd = "<@"
+
+function evaluarCodigo(codigo = "") {
+    let start = codigo.indexOf(evalBegin)
+    while(start != -1) {
+        let end = codigo.indexOf(evalEnd)
+        if (end == -1) {
+            throw "Bloque de javascript no terminado con " + evalEnd
+        }
+
+        let jsCode = codigo.substring(start+evalBegin.length, end)
+        let result = eval(`(function() { ${jsCode} })()`)
+
+        codigo = codigo.substring(0, start) + result + codigo.substring(end + evalEnd.length)
+        start = codigo.indexOf(evalBegin)
+    }
+
+    return codigo
+}
 
 export function processMarkdown(file = "", importStack = 0) {
     if (importStack >= maxImportStack) {
@@ -16,6 +36,10 @@ export function processMarkdown(file = "", importStack = 0) {
     let cwd = parentDir(absPath)
 
     let contents = fs.readFileSync(file).toString()
+    if(contents.indexOf(evalBegin) != -1) {
+        contents = evaluarCodigo(contents)
+    }
+
     let lines = contents.split("\n")
     lines.reverse()
     
