@@ -68,6 +68,6 @@ pre {
     font-family: 'Courier New', Courier, monospace;
     padding: 10pt;
     margin: 0 40pt;
-    background-color: rgb(238, 238, 238);
-    white-space: pre-line;
+    background-color: rgb(245, 245, 245);
+    border-radius: 4px;
 }

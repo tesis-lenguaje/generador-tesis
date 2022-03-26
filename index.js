@@ -15,13 +15,24 @@ import { processMarkdown } from './scripts/md-extended.js'
 import { parentDir } from './scripts/utils.js'
 import { enumerarHs } from './scripts/html-processing.js'
 
+import hljs from 'highlight.js'
+
 String.prototype.llenarVariable = function(nombre, valor) {
     return this.replace(`#{${nombre}}#`, valor)
 }
 
 let md = new MarkdownIt({
     html: true,
-    linkify: true
+    linkify: true,
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(str, { language: lang }).value;
+          } catch (__) {}
+        }
+    
+        return ''; // use external default escaping
+      }
 })
 
 md.use(anchor, {
@@ -59,36 +70,10 @@ let processed = processMarkdown(filename)
 
 let rendered = md.render(processed)
 
-var options = {
-    format: "Letter",
-    orientation: "portrait",
-    border: "10mm",
-    // header: {
-    //     height: "5mm",
-    //     contents: '<div style="text-align: center;">Lenguaje de programación en español</div>'
-    // },
-    footer: {
-        height: "5mm",
-        contents: {
-            default: '<span style="color: #444;">{{page}}</span><!--/<span>{{pages}}</span>-->',
-            last: 'Fin'
-        }
-    }
-}
-
 let conTemplate = template.llenarVariable("contenido", rendered)
 
 const window = new JSDOM(conTemplate)
 const { document } = window.window
-
-// let styles = document.querySelectorAll('link[rel="stylesheet"]')
-// for (let tag of styles) {
-//     let styleFilename = tag.href
-//     let content = fs.readFileSync(styleFilename)
-
-//     tag.href = ""
-//     tag.innerText = "\n" + content + "\n"
-// }
 
 enumerarHs(document)
 
