@@ -40,17 +40,17 @@ program
 program.parse(process.argv)
 let flags = program.opts()
 
-let filename = path.normalize(program.args[0])
+let filename = path.resolve(program.args[0])
 
-let output = path.normalize(flags.output)
+let output = path.resolve(flags.output)
 
 // console.log(flags.template)
-let templateName = path.normalize(flags.template)
+let templateName = path.resolve(flags.template)
 
 // let template = fs.readFileSync(program.opts().template)
 let template = fs.readFileSync(templateName).toString()
 
-let newPath = parentDir(filename)
+let newPath = parentDir(templateName)
 
 process.chdir(newPath)
 
@@ -98,7 +98,7 @@ for (let el of headers) {
 }
 
 let actualHTML = document.documentElement.innerHTML
-let HTMLOutput = "output.html"
+let HTMLOutput = path.basename(output, ".pdf") + ".html"
 fs.writeFileSync(HTMLOutput, actualHTML)
 
 exec(`wkhtmltopdf -s Letter --enable-local-file-access --print-media-type ${HTMLOutput} ${output}`, (error, stdout, stderr) => {
