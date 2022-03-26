@@ -13,6 +13,7 @@ import { exec } from 'child_process'
 import { processMarkdown } from './scripts/md-extended.js'
 
 import { parentDir } from './scripts/utils.js'
+import { enumerarHs } from './scripts/html-processing.js'
 
 String.prototype.llenarVariable = function(nombre, valor) {
     return this.replace(`#{${nombre}}#`, valor)
@@ -88,6 +89,8 @@ const { document } = window.window
 //     tag.href = ""
 //     tag.innerText = "\n" + content + "\n"
 // }
+
+enumerarHs(document)
 
 let actualHTML = document.documentElement.innerHTML
 let HTMLOutput = path.basename(output, ".pdf") + ".html"

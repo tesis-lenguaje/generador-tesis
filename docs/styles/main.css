@@ -33,6 +33,10 @@ a {
     color: black;
 }
 
+[contador]::before {
+    content: attr(contador);
+}
+
 .table-of-contents>ol {
     counter-reset: item;
 }
