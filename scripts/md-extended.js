@@ -9,7 +9,8 @@ const importPrefix = "@import "
 const evalBegin = "@>"
 const evalEnd = "<@"
 
-const tagMarker = "@#"
+const tagIdMarker = "@#"
+const tagClassMarker = "@."
 
 function evaluarCodigo(codigo = "") {
     let start = codigo.indexOf(evalBegin)
@@ -30,17 +31,30 @@ function evaluarCodigo(codigo = "") {
 }
 
 function resolveTags(codigo = "") {
-    let start = codigo.indexOf(tagMarker)
+    let start = codigo.indexOf(tagIdMarker)
     while(start != -1) {
         let end = codigo.substring(start).indexOf(" ")
         if (end == -1) { end = codigo.length }
         else { end += start }
 
-        let tagID = codigo.substring(start+tagMarker.length, end)
+        let tagID = codigo.substring(start+tagIdMarker.length, end)
         let tag = `<span id="${tagID}"></span>`
 
         codigo = codigo.substring(0, start) + tag + codigo.substring(end)
-        start = codigo.indexOf(tagMarker)
+        start = codigo.indexOf(tagIdMarker)
+    }
+
+    start = codigo.indexOf(tagClassMarker)
+    while(start != -1) {
+        let end = codigo.substring(start).indexOf(" ")
+        if (end == -1) { end = codigo.length }
+        else { end += start }
+
+        let tagID = codigo.substring(start+tagClassMarker.length, end)
+        let tag = `<span class="${tagID}"></span>`
+
+        codigo = codigo.substring(0, start) + tag + codigo.substring(end)
+        start = codigo.indexOf(tagClassMarker)
     }
 
     return codigo

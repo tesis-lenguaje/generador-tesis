@@ -3,11 +3,34 @@
 [Enlace a código](#codigo)
 
 ```mermaid
-5cm graph TD;
-    A[Investigar normas apa]-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+classDiagram
+      Animal <|-- Duck
+      Animal <|-- Fish
+      Animal <|-- Zebra
+      Animal <|-- Tiger
+      class Animal {
+        +int age
+        +String gender
+        +isMammal()
+        +mate()
+      }
+      class Duck{
+          +String beakColor
+          +swim()
+          +quack()
+      }
+      class Fish{
+          -int sizeInFeet
+          -canEat()
+      }
+      class Zebra{
+          +bool is_wild
+          +run()
+      }
+      class Tiger {
+          +int num_of_stripes
+          +roar()
+      }
 ```
 
 @import secciones/tema

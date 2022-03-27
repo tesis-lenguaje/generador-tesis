@@ -116,6 +116,12 @@ h2>a, h1>a {
     text-decoration: none;
 }
 
+.salto {
+    display: block;
+    height: 1px;
+    page-break-before: always;
+}
+
 /* https://stackoverflow.com/a/30326819 */
 ol {
     counter-reset: item;
@@ -170,7 +176,12 @@ code {
 }
 
 pre {
-    overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+pre::-webkit-scrollbar {
+    display: none;
 }
 
 pre code {
