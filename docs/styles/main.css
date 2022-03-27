@@ -60,6 +60,7 @@
     body {
         max-width: 700px;
         margin: 0 auto;
+        padding: 0 .25in;
     }
 
     h1 {
@@ -130,4 +131,23 @@ pre {
     margin: 0 40pt;
     background-color: rgb(245, 245, 245);
     border-radius: 4px;
+}
+
+pre.mermaid-diagram {
+    padding: 0;
+    text-align: center;
+    background-color: transparent;
+}
+
+.mermaid-diagram svg div {
+    padding: 0 !important;
+    font-size: 10pt !important;
+}
+
+.mermaid-diagram * {
+    overflow: visible;
+}
+
+.mermaid-diagram svg {
+    width: 100%;
 }

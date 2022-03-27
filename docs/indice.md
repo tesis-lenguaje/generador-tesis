@@ -2,6 +2,14 @@
 [[toc]]
 [Enlace a código](#codigo)
 
+```mermaid
+graph TD;
+    A[Programar inicio para que no se salga]-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 @import secciones/tema
 
 @import secciones/objetivos
@@ -9,6 +17,21 @@
 @import secciones/introduccion
 
 @import secciones/justificacion
+
+# ¿Qué tal van las gráficas?
+
+```mermaid
+10cm sequenceDiagram
+Alice ->> Bob: Hello Bob, how are you?
+Bob-->>John: How about you John?
+Bob--x Alice: I am good thanks!
+Bob-x John: I am good thanks!
+
+Bob-->Alice: Checking with John...
+Alice->John: Yes... John, how are you?
+```
+
+Quisiera poder renderizar una grafica de `UML` en este lugar, por favor:
 
 # Probando preprocesado de javascript al compilar a pdf:
 
@@ -45,4 +68,4 @@ genera el siguiente resultado en compilación: @>
 
     result += "</ol>"
     return result
-<@.
+<@
