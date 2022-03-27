@@ -48,6 +48,14 @@
         text-indent: 1.27cm;
     }
 
+    code {
+        font-size: 10pt;
+    }
+
+    pre code {
+        font-size: 12pt;
+    }
+
     /* Fin Normas APA */
 }
 
@@ -150,4 +158,16 @@ pre.mermaid-diagram {
 
 .mermaid-diagram svg {
     width: 100%;
+}
+
+code {
+    background-color: rgb(238, 238, 238);
+    color: rgb(36, 36, 36);
+    padding: 2pt 4pt;
+    border-radius: 1em;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
 }
