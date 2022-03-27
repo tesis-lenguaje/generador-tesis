@@ -14,6 +14,10 @@
         margin: 0 auto;
     }
 
+    h1 {
+        text-align: center;
+    }
+
     h1, h2, h3, h4 {
         text-transform: capitalize;
         margin: 0 auto;
@@ -66,9 +70,6 @@
 /* Estilos generales */
 
 /* Normas APA: */
-h1 {
-    text-align: center;
-}
 
 p {
     text-indent: 1.27cm;
