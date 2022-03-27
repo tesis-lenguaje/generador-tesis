@@ -69,6 +69,7 @@
         max-width: 700px;
         margin: 0 auto;
         padding: 0 .25in;
+        overflow-x: hidden;
     }
 
     h1 {
@@ -100,6 +101,7 @@ h1:not(:first-child) {
 
 a {
     color: black;
+    word-wrap: break-word;
 }
 
 [contador]::before {
@@ -165,6 +167,10 @@ code {
     color: rgb(36, 36, 36);
     padding: 2pt 4pt;
     border-radius: 1em;
+}
+
+pre {
+    overflow-y: scroll;
 }
 
 pre code {

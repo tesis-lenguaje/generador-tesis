@@ -3,14 +3,18 @@
 [Enlace a código](#codigo)
 
 ```mermaid
-graph TD;
-    A[Programar inicio para que no se salga]-->B;
+5cm graph TD;
+    A[Investigar normas apa]-->B;
     A-->C;
     B-->D;
     C-->D;
 ```
 
 @import secciones/tema
+
+# Qué tal van los h4?
+#### Bueno...
+No creo que haya mucho problema. Lo principal es que detecte que esto es un parrafo que va a la par.
 
 @import secciones/objetivos
 

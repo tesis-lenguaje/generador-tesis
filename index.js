@@ -17,6 +17,10 @@ import { enumerarHs } from './scripts/html-processing.js'
 import hljs from 'highlight.js'
 import { parseMermaid } from './scripts/mermaid-setup.js'
 
+function print(...v) {
+    console.log(...v)
+}
+
 String.prototype.llenarVariable = function(nombre, valor) {
     return this.replace(`#{${nombre}}#`, valor)
 }
@@ -118,10 +122,20 @@ for(let item of contents) {
     let id = "#" + mermaidIdPrefix + item.num
 
     let pre = document.querySelector(id)
-    let size = item.size ?? "3in"
-    svg = "<svg " + 'height="' + size + '" ' + svg.substring("<svg".length)
+    // svg = "<svg " + 'height="' + size + '" ' + svg.substring("<svg".length)
 
     pre.innerHTML = svg
+    let svgEl = pre.childNodes[0]
+
+    let width = svgEl.getAttribute("width")
+    let height = svgEl.getAttribute("height")
+    let size = item.size ?? `${height}px`
+
+    svgEl.setAttribute("height", `${size}`)
+
+    // svgEl.setAttribute("height", )
+
+    svgEl.setAttribute("style", `aspect-ratio: ${width}/${height};`)
 }
 
 if (contents.length > 0) 
