@@ -9,6 +9,8 @@ const importPrefix = "@import "
 const evalBegin = "@>"
 const evalEnd = "<@"
 
+const tagMarker = "@#"
+
 function evaluarCodigo(codigo = "") {
     let start = codigo.indexOf(evalBegin)
     while(start != -1) {
@@ -27,6 +29,23 @@ function evaluarCodigo(codigo = "") {
     return codigo
 }
 
+function resolveTags(codigo = "") {
+    let start = codigo.indexOf(tagMarker)
+    while(start != -1) {
+        let end = codigo.substring(start).indexOf(" ")
+        if (end == -1) { end = codigo.length }
+        else { end += start }
+
+        let tagID = codigo.substring(start+tagMarker.length, end)
+        let tag = `<span id="${tagID}"></span>`
+
+        codigo = codigo.substring(0, start) + tag + codigo.substring(end)
+        start = codigo.indexOf(tagMarker)
+    }
+
+    return codigo
+}
+
 export function processMarkdown(file = "", importStack = 0) {
     if (importStack >= maxImportStack) {
         throw "Stack de importes excedido al importar `" + file + "`"
@@ -36,15 +55,14 @@ export function processMarkdown(file = "", importStack = 0) {
     let cwd = parentDir(absPath)
 
     let contents = fs.readFileSync(file).toString()
-    if(contents.indexOf(evalBegin) != -1) {
-        contents = evaluarCodigo(contents)
-    }
+    contents = evaluarCodigo(contents)
 
     let lines = contents.split("\n")
     lines.reverse()
     
     let result = []
     for (let line of lines) {
+        line = resolveTags(line)
         process.chdir(cwd)
         if(line.startsWith(importPrefix)) {
             let file = line.slice(importPrefix.length)

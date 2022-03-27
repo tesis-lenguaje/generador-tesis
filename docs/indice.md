@@ -1,5 +1,6 @@
 # Indice
 [[toc]]
+[Enlace a código](#codigo)
 
 @import secciones/tema
 
@@ -9,11 +10,9 @@
 
 @import secciones/justificacion
 
-@import secciones/bibliografia
-
 # Probando preprocesado de javascript al compilar a pdf:
 
-El código:
+El código:@#codigo
 ```javascript
 let result = "<ol>"
 

@@ -6,3 +6,5 @@ Por otro lado, incluso personas que hablen inglés y aprendan a programar utiliz
 El lenguaje de programación aquí propuesto busca enfrentar estos dos problemas. En primer lugar, construyendo una gramática y conjunto de palabras clave estríctamente basado en español. En segundo lugar, abandonando y redefiniendo características de la programación que son meramente el legado de *software* antiguo y de tradición.
 
 Ademas, con la creación de este lenguaje se desea promover el desarrollo de herramientas que tengan español como base, de mejoras a lenguajes de programación existentes, y el eliminar barreras de entrada innecesarias en el campo tecnológico.
+
+@import bibliografia
