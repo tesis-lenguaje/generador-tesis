@@ -9,4 +9,6 @@
 
 @import secciones/justificacion
 
-@import bibliografia
+@import secciones/bibliografia
+
+@import secciones/observaciones
