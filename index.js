@@ -17,6 +17,8 @@ import { enumerarHs } from './scripts/html-processing.js'
 import hljs from 'highlight.js'
 import { parseMermaid } from './scripts/mermaid-setup.js'
 
+const mainWD = process.cwd()
+
 function print(...v) {
     console.log(...v)
 }
@@ -143,9 +145,14 @@ if (contents.length > 0)
 
 enumerarHs(document)
 
+let parentOutput = parentDir(output)
+
 let actualHTML = document.documentElement.innerHTML
 let HTMLOutput = path.basename(output, ".pdf") + ".html"
-fs.writeFileSync(HTMLOutput, actualHTML)
+let htmlOutputPath = parentOutput + "/" + HTMLOutput
+fs.writeFileSync(htmlOutputPath, actualHTML)
+
+process.chdir(mainWD)
 
 exec(`wkhtmltopdf --page-width 8.5in --page-height 11in --enable-local-file-access --print-media-type ${HTMLOutput} ${output}`, (error, stdout, stderr) => {
     if (error) {
