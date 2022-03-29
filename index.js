@@ -17,6 +17,8 @@ import { enumerarHs } from './scripts/html-processing.js'
 import hljs from 'highlight.js'
 import { parseMermaid } from './scripts/mermaid-setup.js'
 
+import prettify from 'html-prettify'
+
 const mainWD = process.cwd()
 
 function print(...v) {
@@ -147,7 +149,7 @@ enumerarHs(document)
 
 let parentOutput = parentDir(output)
 
-let actualHTML = document.documentElement.innerHTML
+let actualHTML = prettify(document.documentElement.innerHTML)
 let HTMLOutput = path.basename(output, ".pdf") + ".html"
 let htmlOutputPath = parentOutput + "/" + HTMLOutput
 fs.writeFileSync(htmlOutputPath, actualHTML)

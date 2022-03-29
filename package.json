@@ -14,6 +14,7 @@
     "headless-mermaid": "^1.3.0",
     "highlight.js": "^11.5.0",
     "html-pdf-node": "^1.0.8",
+    "html-prettify": "^1.0.6",
     "jsdom": "^19.0.0",
     "markdown-it": "^12.3.2",
     "markdown-it-anchor": "^8.4.1",
