@@ -11,6 +11,8 @@ const evalEnd = "<@"
 
 const tagIdMarker = "@#"
 const tagClassMarker = "@."
+const errorClassMarker = "@!"
+const questionClassMarker = "@?"
 
 function evaluarCodigo(codigo = "") {
     let start = codigo.indexOf(evalBegin)
@@ -57,7 +59,22 @@ function resolveTags(codigo = "") {
         start = codigo.indexOf(tagClassMarker)
     }
 
-    return codigo
+    let result = []
+    for (let line of codigo.split("\n")) {
+        if(line.startsWith(questionClassMarker)) {
+            let rest = line.substring(questionClassMarker.length)
+            let isEmpty = !rest.trim() 
+            result.push(`<p class="correccion"><span class="correccion-pregunta ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></p>`)
+        } else if(line.startsWith(errorClassMarker)) {
+            let rest = line.substring(errorClassMarker.length)
+            let isEmpty = !rest.trim() 
+            result.push(`<p class="correccion"><span class="correccion-error ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></p>`)
+        } else {
+            result.push(line)
+        }
+    }
+
+    return result.join("\n")
 }
 
 export function processMarkdown(file = "", importStack = 0) {
