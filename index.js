@@ -20,6 +20,7 @@ import { parseMermaid } from './scripts/mermaid-setup.js'
 import prettify from 'html-prettify'
 
 const mainWD = process.cwd()
+global.mainWD = mainWD
 
 function print(...v) {
     console.log(...v)

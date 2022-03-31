@@ -61,18 +61,38 @@ function resolveTags(codigo = "") {
 
     let result = []
     for (let line of codigo.split("\n")) {
-        if(line.startsWith(questionClassMarker)) {
-            let rest = line.substring(questionClassMarker.length)
+        if(line.trim().startsWith(questionClassMarker)) {
+            let index = line.indexOf(questionClassMarker)
+            let rest = line.substring(index + questionClassMarker.length)
             let isEmpty = !rest.trim() 
-            result.push(`<p class="correccion"><span class="correccion-pregunta ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></p>`)
-        } else if(line.startsWith(errorClassMarker)) {
-            let rest = line.substring(errorClassMarker.length)
+            result.push(`<p class="correccion correccion-enlinea"><span class="correccion-pregunta  ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></p>\n`)
+        } else if (line.indexOf(questionClassMarker + "(") != -1) {
+            let index = line.indexOf(questionClassMarker + "(") + questionClassMarker.length + 1
+            let lineStart = line.substring(0, index - questionClassMarker.length - 1)
+            let secondIndex = line.indexOf(")")
+            let rest = line.substring(index, secondIndex)
+            let lineEnd = line.substring(secondIndex+1)
+            let isEmpty = !rest.trim()
+            result.push(`${lineStart} <span class="correccion"><span class="correccion-pregunta ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></span> ${lineEnd}\n`)
+        } else if(line.trim().startsWith(errorClassMarker)) {
+            let index = line.indexOf(errorClassMarker)
+            let rest = line.substring(index + errorClassMarker.length)
             let isEmpty = !rest.trim() 
-            result.push(`<p class="correccion"><span class="correccion-error ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></p>`)
+            result.push(`<p class="correccion correccion-enlinea"><span class="correccion-error ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></p>\n`)
+        } else if (line.indexOf(errorClassMarker + "(") != -1) {
+            let index = line.indexOf(errorClassMarker + "(") + errorClassMarker.length + 1
+            let lineStart = line.substring(0, index - questionClassMarker.length - 1)
+            let secondIndex = line.indexOf(")")
+            let rest = line.substring(index, secondIndex)
+            let lineEnd = line.substring(secondIndex+1)
+            let isEmpty = !rest.trim()
+            result.push(`${lineStart} <span class="correccion"><span class="correccion-error ${isEmpty ? "correccion-vacia" : ""}">${rest}</span></span> ${lineEnd}\n`)
         } else {
             result.push(line)
         }
     }
+
+
 
     return result.join("\n")
 }

@@ -1,2 +1,2 @@
 # Tema
-Propuesta de desarrollo de un lenguaje de programación en español para facilitar el aprendizaje en estudiantes hispanohablantes, en la Universidad Nacional de Ingeniería, Nicaragua, 2021.
+Desarrollo de un lenguaje de programación con sintaxis en idioma español para estudiantes de la Universidad Nacional de Ingeniería, Nicaragua.
